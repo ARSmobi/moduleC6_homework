@@ -1,4 +1,5 @@
 const historyNode = document.querySelector('.history');
+const inputNode = document.querySelector('.input');
 const btn_send = document.querySelector('.btn_send');
 const btn_geo = document.querySelector('.btn_geo');
 
@@ -44,8 +45,19 @@ function addHistory(msg, from){
     historyNode.appendChild(divMsg);
 }
 
+inputNode.addEventListener('keydown', (e) => {
+    if (e.keyCode === 13){
+        const textInput = inputNode.value;
+        if (textInput){
+            addHistory(textInput, 'client');
+            document.querySelector('.input').value = '';
+            websocket.send(textInput);
+        }
+    }
+});
+
 btn_send.addEventListener('click', () => {
-    const textInput = document.querySelector('.input').value;
+    const textInput = inputNode.value;
     if (textInput){
         addHistory(textInput, 'client');
         document.querySelector('.input').value = '';
