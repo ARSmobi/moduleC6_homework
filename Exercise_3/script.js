@@ -43,6 +43,7 @@ function addHistory(msg, from){
     divMsg.classList.add(from);
     divMsg.innerHTML = message;
     historyNode.appendChild(divMsg);
+    historyNode.scrollTop = historyNode.scrollHeight;
 }
 
 inputNode.addEventListener('keydown', (e) => {
